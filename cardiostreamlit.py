@@ -69,7 +69,7 @@ def predict(gender, age, hypertension,
 def main():
 
     style = """<div style='background-color:skyblue; padding:12px'>
-              <h1 style='color:black'>DISEASE PREDICTION</h1>
+              <h1 style='color:black'>Cardio PREDICTION</h1>
        </div>"""
     st.markdown(style, unsafe_allow_html=True)
 
