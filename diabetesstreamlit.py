@@ -92,7 +92,7 @@ def main():
                                   step =1.0, format="%.2f", value=1.0)
     
 
-    gluc=left.selectbox('Glucose',('Normal', 'Above normal', 'Well above normal'))
+    gluc=right.selectbox('Glucose',('Normal', 'Above normal', 'Well above normal'))
     gluc_encoded = Code(gluc)
 
 
