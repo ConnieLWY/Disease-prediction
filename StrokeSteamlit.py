@@ -101,7 +101,7 @@ def main():
     smoking_status_encoded = Code(smoking_status)
     
 
-    gluc=left.selectbox('Glucose',('Normal', 'Above normal', 'Well above normal'))
+    gluc=right.selectbox('Glucose',('Normal', 'Above normal', 'Well above normal'))
     gluc_encoded = Code(gluc)
 
 
