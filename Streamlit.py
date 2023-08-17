@@ -52,7 +52,6 @@ def predict(gender, age, hypertension, heart_disease, ever_married,
         'smoking_status': [smoking_status],
         'gluc': [gluc_encoded]
     })
-    print(input_stroke)
 
     input_cardio = pd.DataFrame({
         'age': [age],
@@ -65,7 +64,6 @@ def predict(gender, age, hypertension, heart_disease, ever_married,
         'hypertension':[hypertension],
         'bmi':[bmi]
     })
-    print(input_cardio)
 
     input_diabetes = pd.DataFrame({
         'gender': [gender],
@@ -77,18 +75,32 @@ def predict(gender, age, hypertension, heart_disease, ever_married,
         'HbA1c_level': [HbA1c_level],
         'gluc': [gluc_encoded]
     })
-    print(input_diabetes)
 
 
     # Make predictions using all the models
-    stroke_pred_prob = stroke.predict_proba(input_stroke)
-    cardio_pred_prob = cardio.predict_proba(input_cardio)
+    stroke_pred_prob = stroke.predict(input_stroke)
+    cardio_pred_prob = cardio.predict(input_cardio)
     diabetes_pred_prob = diabetes.predict(input_diabetes)
 
+    if stroke_pred_prob[0] <0:
+        stroke_pred_prob[0] = 0.00
+    elif stroke_pred_prob[0]>100:
+        stroke_pred_prob[0] = 1.00
+
+    if cardio_pred_prob[0] <0:
+        cardio_pred_prob[0] = 0.00
+    elif cardio_pred_prob[0]>100:
+        cardio_pred_prob[0] = 1.00
+
+    if diabetes_pred_prob[0] <0:
+        diabetes_pred_prob[0] = 0.00
+    elif diabetes_pred_prob[0]>100:
+        diabetes_pred_prob[0] = 1.00
+
     predictions = {
-        'Stroke': stroke_pred_prob[0, 1]*100,
-        'Cardio': cardio_pred_prob[0, 1]*100,
-        'Diabetes': diabetes_pred_prob[0, 1]*100
+        'Stroke': stroke_pred_prob[0]*100,
+        'Cardio': cardio_pred_prob[0]*100,
+        'Diabetes': diabetes_pred_prob[0]*100
     }
 
     return predictions
@@ -99,11 +111,6 @@ def main():
               <h1 style='color:black'>DISEASE PREDICTION</h1>
        </div>"""
     st.markdown(style, unsafe_allow_html=True)
-    st.markdown('''Accuracy 
-        \nStroke: 76.61% 
-        \nCardiovascular Disease: 62.43%
-        \nDiabetes: 94.74% 
-        \n -----------------------------------------------------------''')
     left, right, re = st.columns(3)
     gender=left.selectbox('Gender',('Male', 'Female'))
     gender_encoded = Code(gender)
