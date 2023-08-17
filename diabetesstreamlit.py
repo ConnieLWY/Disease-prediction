@@ -65,14 +65,9 @@ def predict(gender, age, hypertension, heart_disease,
 def main():
 
     style = """<div style='background-color:skyblue; padding:12px'>
-              <h1 style='color:black'>DISEASE PREDICTION</h1>
+              <h1 style='color:black'>Diabetes PREDICTION</h1>
        </div>"""
     st.markdown(style, unsafe_allow_html=True)
-    st.markdown('''Accuracy 
-        \nStroke: 76.61% 
-        \nCardiovascular Disease: 62.43%
-        \nDiabetes: 94.74% 
-        \n -----------------------------------------------------------''')
     left, right, re = st.columns(3)
     gender=left.selectbox('Gender',('Male', 'Female'))
     gender_encoded = Code(gender)
@@ -86,15 +81,6 @@ def main():
     heart_disease=right.selectbox('Heart Disease',('Yes', 'No'))
     heart_disease_encoded = Code(heart_disease)
 
-    ever_married=left.selectbox('Ever Married',('Yes', 'No'))
-    ever_married_encoded = Code(ever_married)
-
-    work_type=right.selectbox('Work Type',('Children', 'Govt_job', 'Never_worked', 'Private', 'Self-employed'))
-    work_type_encoded = Code(work_type)
-
-    Residence_type=left.selectbox('Residence Type',('Rural', 'Urban'))
-    Residence_type_encoded = Code(Residence_type)
-
     
     bmi = left.number_input('BMI',
                                   step =1.0, format="%.2f", value=1.0)
@@ -105,17 +91,10 @@ def main():
     HbA1c_level = left.number_input('HbA1c level',
                                   step =1.0, format="%.2f", value=1.0)
     
-    cholesterol=right.selectbox('Cholesterol',('Normal', 'Above normal', 'Well above normal'))
-    cholesterol_encoded = Code(cholesterol)
 
     gluc=left.selectbox('Glucose',('Normal', 'Above normal', 'Well above normal'))
     gluc_encoded = Code(gluc)
 
-    alco =right.selectbox('Alcohol intake',('Yes', 'No'))
-    alco_encoded = Code(alco)
-
-    active =right.selectbox('Physical activity',('Yes', 'No'))
-    active_encoded = Code(active)
 
     # Add a button to make predictions
     button = st.button("Predict")
