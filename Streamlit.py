@@ -83,7 +83,7 @@ def predict(gender, age, hypertension, heart_disease, ever_married,
     # Make predictions using all the models
     stroke_pred_prob = stroke.predict_proba(input_stroke)
     cardio_pred_prob = cardio.predict_proba(input_cardio)
-    diabetes_pred_prob = diabetes.predict_proba(input_diabetes)
+    diabetes_pred_prob = diabetes.predict(input_diabetes)
 
     predictions = {
         'Stroke': stroke_pred_prob[0, 1]*100,
