@@ -68,7 +68,7 @@ def main():
               <h1 style='color:black'>Diabetes PREDICTION</h1>
        </div>"""
     st.markdown(style, unsafe_allow_html=True)
-    st.markdown("The accuracy is 92.27% when the threshold is 0.5"), unsafe_allow_html=False)
+    st.markdown("The accuracy is 92.27% when the threshold is 0.5", unsafe_allow_html=False)
     left, right, re = st.columns(3)
     gender=left.selectbox('Gender',('Male', 'Female'))
     gender_encoded = Code(gender)
